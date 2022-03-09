@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CardSelectionComponent } from './card-selection.component';
+import { CardSeleccionP2Component } from './card-seleccion-p2.component';
 
-describe('CardSelectionComponent', () => {
-  let component: CardSelectionComponent;
-  let fixture: ComponentFixture<CardSelectionComponent>;
+describe('CardSeleccionP2Component', () => {
+  let component: CardSeleccionP2Component;
+  let fixture: ComponentFixture<CardSeleccionP2Component>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CardSelectionComponent ]
+      declarations: [ CardSeleccionP2Component ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CardSelectionComponent);
+    fixture = TestBed.createComponent(CardSeleccionP2Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
