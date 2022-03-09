@@ -17,4 +17,8 @@ export class SelectionComponent implements OnInit {
     this.router.navigate([""]);
   }
 
+  Batallar(){
+    this.router.navigate(["loading"]);
+  }
+
 }
