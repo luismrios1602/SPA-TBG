@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardBattleP2Component implements OnInit {
 
+  playername="CPU";
+
   constructor() { }
 
   ngOnInit(): void {

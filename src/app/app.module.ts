@@ -11,6 +11,7 @@ import { CardPreviewP1Component } from './components/cards/cardPreview/card-prev
 import { CardPreviewP2Component } from './components/cards/cardPreview/card-preview-p2/card-preview-p2.component';
 import { CardBattleP1Component } from './components/cards/cardBattle/card-battle-p1/card-battle-p1.component';
 import { CardBattleP2Component } from './components/cards/cardBattle/card-battle-p2/card-battle-p2.component';
+import { BattleComponent } from './pages/battle/battle.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CardBattleP2Component } from './components/cards/cardBattle/card-battle
     CardPreviewP1Component,
     CardPreviewP2Component,
     CardBattleP1Component,
-    CardBattleP2Component
+    CardBattleP2Component,
+    BattleComponent
   ],
   imports: [
     BrowserModule,
