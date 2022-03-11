@@ -13,7 +13,7 @@
                         <label class="form-label" for="name">Ataque: </label>
                     </div>
                     <div class="col-10">
-                        <progress max="500" value="250" class="form-control h-75 w-75 float-end"></progress>
+                        <progress max="500" value="{{player2.attack}}" class="form-control h-75 w-75 float-end"></progress>
                     </div>
                 </div>
                 <div class="row mt-2">
@@ -21,14 +21,14 @@
                         <label class="form-label" for="name">Defensa: </label>
                     </div>
                     <div class="col-10">
-                        <progress max="500" value="200" class="form-control h-75 w-75 float-end"></progress>
+                        <progress max="500" value="{{player2.defense}}" class="form-control h-75 w-75 float-end"></progress>
                     </div>
                 </div>                <div class="row mt-2">
                     <div class="col-2">
                         <label class="form-label" for="name">Sabiduría: </label>
                     </div>
                     <div class="col-10">
-                        <progress max="500" value="400" class="form-control h-75 w-75 float-end"></progress>
+                        <progress max="500" value="{{player2.wisdom}}" class="form-control h-75 w-75 float-end"></progress>
                     </div>
                 </div>                
                 <div class="row mt-2">
@@ -36,7 +36,7 @@
                         <label class="form-label" for="name">Suerte: </label>
                     </div>
                     <div class="col-10">
-                        <progress max="100" value="25" class="form-control h-75 w-75 float-end"></progress>
+                        <progress max="100" value="{{player2.luck}}" class="form-control h-75 w-75 float-end"></progress>
                     </div>
                 </div>
             </form>
@@ -45,3 +45,4 @@
         </div>
     </div>
 </div>
+
