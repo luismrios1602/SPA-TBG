@@ -2,3 +2,8 @@
     background-color: rgba(13, 172, 48, 0.74);
     pointer-events: none;
 }
+
+img {
+    width: 200px;
+    height: 210px;
+}
