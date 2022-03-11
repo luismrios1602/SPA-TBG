@@ -14,10 +14,12 @@
             <div class="col-5">
                 <app-card-seleccion-p1></app-card-seleccion-p1>
             </div>
-            <div class="col-2 text-center" style="margin-top: 20%;">
-                <button (click)="Batallar()" class="btn  btn-success text-center mb-5">BATALLAR</button>
-                <h1 class="text-center"><strong>VS</strong></h1>
-                <button class="btn  btn-danger text-center mt-5">CANCELAR</button>
+            <div class="col-2 text-center" style="margin-top: 15%;">
+                <div style="pointer-events: none;" id="div-botones">
+                    <button (click)="Batallar()" class="shadows-lg btn btn-success text-center mb-5">BATALLAR</button>
+                    <h1 class="text-center"><strong>VS</strong></h1>
+                    <button class="shadows-lg btn btn-danger text-center mt-5">CANCELAR</button>
+                </div>
             </div>
             <div class="col-5">
                 <app-card-seleccion-p2></app-card-seleccion-p2>
