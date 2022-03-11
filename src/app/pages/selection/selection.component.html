@@ -12,17 +12,17 @@
         </div>
         <div class="row">
             <div class="col-5">
-                <app-card-seleccion-p1></app-card-seleccion-p1>
+                <app-card-seleccion-p1 (habilitarCardP2)="habilitarCardP2()" ></app-card-seleccion-p1>
             </div>
             <div class="col-2 text-center" style="margin-top: 15%;">
-                <div style="pointer-events: none;" id="div-botones">
+                <div #divBotones style="pointer-events: none;">
                     <button (click)="Batallar()" class="shadows-lg btn btn-success text-center mb-5">BATALLAR</button>
                     <h1 class="text-center"><strong>VS</strong></h1>
-                    <button class="shadows-lg btn btn-danger text-center mt-5">CANCELAR</button>
+                    <button class="shadows-lg btn btn-danger text-center mt-5" (click)="Cancelar()">CANCELAR</button>
                 </div>
             </div>
             <div class="col-5">
-                <app-card-seleccion-p2></app-card-seleccion-p2>
+                <app-card-seleccion-p2 (habilitarBotones)="habilitarBotones($event)" [isEnableCard]="P1isSelected"></app-card-seleccion-p2>
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { PersonajeModel } from 'src/app/models/PersonajeModel';
+import { PersonajesService } from 'src/app/services/personajes/personajes.service';
 import { ServicioService } from 'src/app/services/servicio.service';
 
 @Component({
@@ -13,14 +14,19 @@ export class CardSeleccionP2Component implements OnInit {
   personSelected: PersonajeModel = new PersonajeModel;
   listPersonajes:PersonajeModel[] = [];
 
+  @Input() isEnableCard:boolean = false;
+  @Output() habilitarBotones = new EventEmitter<boolean>();
 
-  constructor(private servicio:ServicioService) { }
+  @ViewChild("divCardP2",{static: true}) divCardP2!:ElementRef;
+
+  constructor(private servicio:ServicioService, private personajeService:PersonajesService, private render:Renderer2) {
+
+
+   }
 
   ngOnInit(): void {
-    this.servicio.getPersonajes().subscribe(data => {
-      this.listPersonajes = data;
-    })
-    this.selectPerson("Mago");
+    
+    this.habilitarCard();
   }
 
   selectPerson(tipoPerson:string){
@@ -28,4 +34,20 @@ export class CardSeleccionP2Component implements OnInit {
       this.personSelected = data;
     });
   }
+
+  escogerPersonaje(){
+    this.personajeService.P2 = this.personSelected;
+    this.habilitarBotones.emit(true);
+    
+    this.render.addClass(this.divCardP2.nativeElement,"readyP1")
+  }
+
+  habilitarCard(){
+    this.servicio.getPersonajes().subscribe(data => {
+      this.listPersonajes = data;
+    })
+    this.selectPerson("Mago");
+  }
+
+  
 }
