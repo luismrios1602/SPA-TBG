@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PersonajeModel } from 'src/app/models/PersonajeModel';
+import { PersonajesService } from 'src/app/services/personajes/personajes.service';
 
 @Component({
   selector: 'app-card-battle-p2',
@@ -7,11 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardBattleP2Component implements OnInit {
 
-  playername="CPU";
+  playername="Player 2";
+  player2:PersonajeModel = new PersonajeModel();
 
-  constructor() { }
+  constructor(private personajesServices:PersonajesService) { }
 
   ngOnInit(): void {
+    this.player2 = this.personajesServices.P2;
   }
 
 }

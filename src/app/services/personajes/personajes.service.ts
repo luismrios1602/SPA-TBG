@@ -9,5 +9,7 @@ export class PersonajesService {
   P1:PersonajeModel = new PersonajeModel;
   P2:PersonajeModel = new PersonajeModel;
 
-  constructor() { }
+  constructor() {
+    
+   }
 }

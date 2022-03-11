@@ -1,8 +1,7 @@
-<div class=" mt-5 mb-5 border border-dark p-4">
+<div class="rounded mt-5 mb-5 border border-dark p-4">
     <div class="container">
         <h3 class="text-center">{{playername}}</h3>
         <div class="form">
-            <form action="" method="get">
                 <div class="row mt-2">
                     <div class="col-12 text-center">
                         <img src="/assets/LogoTBG.png" alt="TBG-Logo" class="w-50">
@@ -13,7 +12,7 @@
                         <label class="form-label" for="name">Ataque: </label>
                     </div>
                     <div class="col-10">
-                        <progress max="500" value="250" class="form-control h-75"></progress>
+                        <progress max="500" value="{{player1.attack}}" class="form-control h-75"></progress>
                     </div>
                 </div>
                 <div class="row mt-2">
@@ -21,14 +20,15 @@
                         <label class="form-label" for="name">Defensa: </label>
                     </div>
                     <div class="col-10">
-                        <progress max="500" value="200" class="form-control h-75"></progress>
+                        <progress max="500" value="{{player1.defense}}" class="form-control h-75"></progress>
                     </div>
-                </div>                <div class="row mt-2">
+                </div>
+                <div class="row mt-2">
                     <div class="col-2">
                         <label class="form-label" for="name">Sabiduría: </label>
                     </div>
                     <div class="col-10">
-                        <progress max="500" value="400" class="form-control h-75"></progress>
+                        <progress max="500" value="{{player1.wisdom}}" class="form-control h-75"></progress>
                     </div>
                 </div>                
                 <div class="row mt-2">
@@ -36,7 +36,7 @@
                         <label class="form-label" for="name">Suerte: </label>
                     </div>
                     <div class="col-10">
-                        <progress max="100" value="25" class="form-control h-75"></progress>
+                        <progress max="100" value="{{player1.luck}}" class="form-control h-75"></progress>
                     </div>
                 </div>
                 <div class="row mt-2 text-center">
@@ -76,7 +76,6 @@
                         </div>
                     </div>
                 </div>
-            </form>
         </div>
     </div>
 </div>
