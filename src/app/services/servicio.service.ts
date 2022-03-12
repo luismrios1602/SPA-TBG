@@ -22,8 +22,8 @@ export class ServicioService {
     return this.http.get<PersonajeModel>(this.Url+"/personaje/"+nombre);
   }
 
-  atacar(personaje:PersonajeModel){
-    return this.http.post<PersonajeModel>(this.Url+"/batalla/atacar",personaje);
+  atacar(personajes:PersonajeModel[],idPoder:number){
+    return this.http.post<PersonajeModel>(this.Url+"/batalla/atacar?idPoder="+idPoder,personajes);
   }
 
   defender(personaje:PersonajeModel){

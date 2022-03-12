@@ -17,13 +17,13 @@
         </div>
         <div class="col-5 ">
             <h6 class="float-end">{{vidaP2}}</h6>
-            <progress max="999" value="{{vidaP2}}" class="form-control h-50 float-end"></progress>
+            <progress #pbVidaP2 max="999" value="{{vidaP2}}" class="form-control h-50 float-end"></progress>
             <div *ngFor="let item of victoriasP1" class="circle-red float-end"></div>
         </div>
     </div>
     <div class="row">
-        <div class="col-5">
-            <app-card-battle-p1></app-card-battle-p1>
+        <div #divP1 class="col-5">
+            <app-card-battle-p1 (atacar)="cambiarTurno(2,$event)"></app-card-battle-p1>
         </div>
         <div class="col-2">
             <p class="text-center">Batalla</p>
@@ -36,7 +36,7 @@
             </div>-->
             <textarea disabled rows="30" cols="20" class="form-control text-center p-1">{{narraccion}}</textarea>
         </div>
-        <div class="col-5">
+        <div #divP2 style="pointer-events: none;" class="col-5">
             <app-card-battle-p2></app-card-battle-p2>
         </div>
     </div>

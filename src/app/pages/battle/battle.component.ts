@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { PersonajesService } from 'src/app/services/personajes/personajes.service';
 
@@ -9,14 +9,19 @@ import { PersonajesService } from 'src/app/services/personajes/personajes.servic
 })
 export class BattleComponent implements OnInit {
 
-  vidaP1:Number = 0;
-  vidaP2:Number = 0;
+  vidaP1:number = 999;
+  vidaP2:number = 999;
   narraccion:String = "¡INICIA LA BATALLA!"
-  victoriasP1:Number[] = [];
-  victoriasP2:Number[] = [];
-  rounds:Number = 1;
+  victoriasP1:number[] = [];
+  victoriasP2:number[] = [];
+  rounds:number = 1;
+  turno:number = 1;
 
-  constructor(private router:Router,private personajesServices:PersonajesService) { }
+  @ViewChild("divP1",{static:true}) divP1!: ElementRef;
+  @ViewChild("divP2",{static:true}) divP2!: ElementRef;
+  @ViewChild("pbVidaP2",{static:true}) pbVidaP2!: ElementRef;
+
+  constructor(private router:Router,private personajesServices:PersonajesService, private render:Renderer2) { }
 
   ngOnInit(): void {
     if (this.personajesServices.P1.name==undefined||this.personajesServices.P2.name==undefined) {
@@ -25,7 +30,33 @@ export class BattleComponent implements OnInit {
       this.vidaP1 = this.personajesServices.P1.vida;
       this.vidaP2 = this.personajesServices.P2.vida;
     }
-    
+    this.cambiarTurno(1,0);
+  }
+
+  cambiarTurno(newTurno:number,danho:number){
+
+    if (newTurno==1) {
+
+      this.vidaP1 -= danho;
+      this.personajesServices.P1.vida = this.vidaP1;
+      console.log(this.personajesServices.P1)
+
+      this.render.setValue(this.pbVidaP2.nativeElement,""+this.vidaP2);
+      this.turno=1;
+
+      this.render.removeAttribute(this.divP1.nativeElement,"style");
+      this.render.setAttribute(this.divP2.nativeElement,"style","pointer-events: none; opacity: 0.5;")
+
+    } else  if (newTurno==2) {
+      this.vidaP2 -= danho;
+      this.personajesServices.P2.vida = this.vidaP2;
+      console.log(this.personajesServices.P2)
+
+      this.render.setValue(this.pbVidaP2.nativeElement,""+this.vidaP2);
+      this.turno = 2;
+      this.render.removeAttribute(this.divP2.nativeElement,"style");
+      this.render.setAttribute(this.divP1.nativeElement,"style","pointer-events: none; opacity: 0.5;")
+    }
   }
 
 }
