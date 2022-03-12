@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PersonajeModel } from 'src/app/models/PersonajeModel';
 import { PersonajesService } from 'src/app/services/personajes/personajes.service';
 import { ServicioService } from 'src/app/services/servicio.service';
@@ -11,30 +11,31 @@ import { ServicioService } from 'src/app/services/servicio.service';
 export class CardBattleP1Component implements OnInit {
 
   playername = "Player 1";
-  player1:PersonajeModel = new PersonajeModel();
 
   @Output() atacar = new EventEmitter<number>();
-  personajes:PersonajeModel[] = [];
+  listPersonajes:PersonajeModel[] = [];
 
-  constructor(private personajesServices:PersonajesService, private service:ServicioService) { }
+  constructor(public personajesServices:PersonajesService, private service:ServicioService) { }
 
   ngOnInit(): void {
-    this.player1 = this.personajesServices.P1;
-    this.personajes = [this.player1,this.personajesServices.P2];
+    this.listPersonajes = [this.personajesServices.P1,this.personajesServices.P2];
   }
 
   lanzarPoder1(){
     console.log("lanzando poder 1");
 
-    this.service.atacar(this.personajes,1).subscribe(data =>{
-      console.log(data)
-        this.player1 = data;
-        console.log(this.player1.danho)
-      this.atacar.emit(this.player1.danho);
+    this.service.atacar(this.listPersonajes,1).subscribe(data =>{
 
-      this.personajesServices.P1 = this.player1;
+      console.log("Personaje enviado desde la API = "+data)
+
+      this.personajesServices.P1 = data;
+
+      console.log(this.personajesServices.P1.danho)
+
+      this.atacar.emit(this.personajesServices.P1.danho);
+
     });
-    
   }
+
 
 }
