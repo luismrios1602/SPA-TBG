@@ -38,7 +38,6 @@ export class BattleComponent implements OnInit {
     if (newTurno==1) {
 
       this.vidaP1 -= danho;
-      this.personajesServices.P1.vida = this.vidaP1;
       console.log(this.personajesServices.P1)
 
       this.render.setValue(this.pbVidaP2.nativeElement,""+this.vidaP2);
@@ -48,8 +47,9 @@ export class BattleComponent implements OnInit {
       this.render.setAttribute(this.divP2.nativeElement,"style","pointer-events: none; opacity: 0.5;")
 
     } else  if (newTurno==2) {
+
       this.vidaP2 -= danho;
-      this.personajesServices.P2.vida = this.vidaP2;
+
       console.log(this.personajesServices.P2)
 
       this.render.setValue(this.pbVidaP2.nativeElement,""+this.vidaP2);
@@ -57,6 +57,33 @@ export class BattleComponent implements OnInit {
       this.render.removeAttribute(this.divP2.nativeElement,"style");
       this.render.setAttribute(this.divP1.nativeElement,"style","pointer-events: none; opacity: 0.5;")
     }
+
+    if (this.verificarVictoria()) {
+      this.vidaP1 = this.personajesServices.P1.vida;
+      this.vidaP2 = this.personajesServices.P2.vida;
+    }
   }
 
+  //Método para verificar si alguno de los dos ya ganó :v 
+  verificarVictoria(){
+
+    var finishRound:boolean = false;
+
+    if (this.vidaP1<=0) {
+
+      this.vidaP1=0;
+      this.victoriasP2.push(1);
+      finishRound = true;
+      this.rounds++;
+
+    } else if (this.vidaP2<=0) {
+      
+      this.vidaP2=0;
+      this.victoriasP1.push(1);
+      finishRound = true;
+      this.rounds++;
+    }
+
+    return finishRound;
+  }
 }
