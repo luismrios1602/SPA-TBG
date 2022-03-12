@@ -4,7 +4,35 @@ img {
 }
 
 #cardP1{
-    background-image: url("/assets/bgcardbattle.jpg");
+    background-image: url("/assets/backgrounds/bgcardbattle1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*opacity: 0.5;*/
+}
+
+#cardP2{
+    background-image: url("/assets/backgrounds/bgcardbattle2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*opacity: 0.5;*/
+}
+
+#cardP3{
+    background-image: url("/assets/backgrounds/bgcardbattle3.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*opacity: 0.5;*/
+}
+
+#cardP4{
+    background-image: url("/assets/backgrounds/bgcardbattle4.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*opacity: 0.5;*/
+}
+
+#cardP5{
+    background-image: url("/assets/backgrounds/bgcardbattle5.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     /*opacity: 0.5;*/
