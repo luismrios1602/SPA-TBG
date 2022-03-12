@@ -1,4 +1,4 @@
-<div class="rounded shadow-lg mt-5 mb-5 border border-dark p-4">
+<div id="cardP2" class="rounded shadow-lg mt-5 mb-5 border-2 border-light p-4">
     <div class="container">
         <h3 class="text-center">{{playername}}</h3>
         <div class="form">
@@ -8,39 +8,40 @@
                 </div>
             </div>
             <div class="row mt-2">
-                <div class="col-2">
-                    <label class="form-label" for="name">Ataque: </label>
+                <div class="col-2 p-2">
+                    <h6>Ataque: </h6>
                 </div>
                 <div class="col-10">
                     <progress max="500" value="{{player2.attack}}" class="form-control h-75"></progress>
                 </div>
             </div>
             <div class="row mt-2">
-                <div class="col-2">
-                    <label class="form-label" for="name">Defensa: </label>
+                <div class="col-2 p-2">
+                    <h6>Defensa: </h6>
                 </div>
                 <div class="col-10">
                     <progress max="500" value="{{player2.defense}}" class="form-control h-75"></progress>
                 </div>
             </div>
             <div class="row mt-2">
-                <div class="col-2">
-                    <label class="form-label" for="name">Sabiduría: </label>
+                <div class="col-2 p-2">
+                    <h6>Sabiduría: </h6>
                 </div>
                 <div class="col-10">
                     <progress max="500" value="{{player2.wisdom}}" class="form-control h-75"></progress>
                 </div>
             </div>                
             <div class="row mt-2">
-                <div class="col-2">
-                    <label class="form-label" for="name">Suerte: </label>
+                <div class="col-2 p-2">
+                    <h6>Suerte: </h6>
                 </div>
                 <div class="col-10">
+                    
                     <progress max="100" value="{{player2.luck}}" class="form-control h-75"></progress>
                 </div>
             </div>
             <div class="shadow-lg row mt-2 text-center">
-                <div  class="col-12 border border-dark rounded">
+                <div  class="col-12 border-2 border-light rounded">
                     <div class="row">
                         <div class="col-4">
                             <button class="btn btn-primary m-2">Poder 1</button>

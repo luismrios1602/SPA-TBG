@@ -2,3 +2,15 @@ img {
     width: 180px;
     height: 220px;
 }
+
+#cardP1{
+    background-image: url("/assets/bgcardbattle.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*opacity: 0.5;*/
+}
+
+* {
+   color: black;
+   border-color: white;
+}
