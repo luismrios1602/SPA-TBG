@@ -7,8 +7,8 @@
     </div>
     <div class="row mb-4">
         <div class="col-5">
-            <h6>{{vidaP1}}</h6>
-            <progress max="999" value="{{vidaP1}}" class="form-control h-50"></progress>
+            <h6>{{player1.vida}}</h6>
+            <progress max="999" value="{{player1.vida}}" class="form-control h-50"></progress>
             <div *ngFor="let item of victoriasP1" class="circle-red float-start"></div>
         </div>
         <div class="col-2 mt-2 text-center">
@@ -16,14 +16,14 @@
             <h5><strong>Round</strong></h5>
         </div>
         <div class="col-5 ">
-            <h6 class="float-end">{{vidaP2}}</h6>
-            <progress #pbVidaP2 max="999" value="{{vidaP2}}" class="form-control h-50 float-end"></progress>
+            <h6 class="float-end">{{player2.vida}}</h6>
+            <progress #pbVidaP2 max="999" value="{{player2.vida}}" class="form-control h-50 float-end"></progress>
             <div *ngFor="let item of victoriasP2" class="circle-red float-end"></div>
         </div>
     </div>
     <div class="row">
         <div #divP1 class="col-5">
-            <app-card-battle-p1 (atacar)="cambiarTurno(2,$event)"></app-card-battle-p1>
+            <app-card-battle-p1 (atacar)="cambiarTurno(2,$event)" [player2]="player2"></app-card-battle-p1>
         </div>
         <div class="col-2">
             <p class="text-center">Batalla</p>
@@ -37,7 +37,7 @@
             <textarea disabled rows="30" cols="20" class="form-control text-center p-1">{{narraccion}}</textarea>
         </div>
         <div #divP2 style="pointer-events: none;" class="col-5">
-            <app-card-battle-p2 (atacar)="cambiarTurno(1,$event)"></app-card-battle-p2>
+            <app-card-battle-p2 (atacar)="cambiarTurno(1,$event)" [player1]="player1"></app-card-battle-p2>
         </div>
     </div>
 </div>

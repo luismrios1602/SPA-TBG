@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PersonajeModel } from 'src/app/models/PersonajeModel';
 import { PersonajesService } from 'src/app/services/personajes/personajes.service';
 import { ServicioService } from 'src/app/services/servicio.service';
@@ -12,30 +12,44 @@ export class CardBattleP2Component implements OnInit {
 
   playername = "Player 2"; //Nombre que aparecerá en la card
 
-  @Output() atacar = new EventEmitter<number>(); //Evento que enviará los datos al componente padre (enviará el daño)
+  player2!:PersonajeModel;
+
+  @Input() player1!: PersonajeModel;
+
+  @Output() atacar = new EventEmitter<PersonajeModel>(); //Evento que enviará los datos al componente padre (enviará el daño)
   listPersonajes:PersonajeModel[] = []; //Lista de personajes que se enviará al servicio que requiere ambos personajes
 
   constructor(public personajesServices:PersonajesService, private service:ServicioService) { }
 
   ngOnInit(): void {
 
+    this.player1	= this.personajesServices.P1;
+    this.player2 = this.personajesServices.P2;
+
     //Cargamos la lista de personajes con el personaje actual y el P2 -> El orden es que el personaje que va primero es el que ataca
-    this.listPersonajes = [this.personajesServices.P2,this.personajesServices.P1]; 
+    this.listPersonajes = [this.player2,this.player1]; 
   }
 
   lanzarPoder1(): void{
 
     console.log("lanzando poder 1");
 
+    this.listPersonajes = [this.player2,this.player1]; 
+
     this.service.atacar(this.listPersonajes,1).subscribe(data =>{
 
-      console.log(data)
+      console.log("Personaje enviado desde la API: \n"+
+                  "vida: "+data.vida+
+                  "\nataque: "+data.attack+
+                  "\ndefensa: "+data.defense+
+                  "\nsabiduria: "+data.wisdom+
+                  "\nsuerte: "+data.luck)
 
-      this.personajesServices.P2 = data;
+      this.player2 = data;
 
-      console.log(this.personajesServices.P2.danho)
+      console.log(this.player1.danho)
 
-      this.atacar.emit(this.personajesServices.P2.danho); //Aquí emitimos el daño generado desde la API
+      this.atacar.emit(this.player2);
 
     });
     

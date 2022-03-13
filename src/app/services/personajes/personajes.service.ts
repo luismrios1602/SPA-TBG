@@ -6,8 +6,8 @@ import { PersonajeModel } from 'src/app/models/PersonajeModel';
 })
 export class PersonajesService {
 
-  P1:PersonajeModel = new PersonajeModel;
-  P2:PersonajeModel = new PersonajeModel;
+  P1!:PersonajeModel;
+  P2!:PersonajeModel;
 
   constructor() {
     
