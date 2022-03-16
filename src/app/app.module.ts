@@ -31,7 +31,7 @@ import { BattleComponent } from './pages/battle/battle.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

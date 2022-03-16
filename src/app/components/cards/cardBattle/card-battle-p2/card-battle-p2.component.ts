@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 import { PersonajeModel } from 'src/app/models/PersonajeModel';
 import { PersonajesService } from 'src/app/services/personajes/personajes.service';
 import { ServicioService } from 'src/app/services/servicio.service';
@@ -30,28 +31,31 @@ export class CardBattleP2Component implements OnInit {
     this.listPersonajes = [this.player2,this.player1]; 
   }
 
-  lanzarPoder1(): void{
+  async lanzarPoder1(): Promise<void>{
 
     console.log("lanzando poder 1");
 
     this.listPersonajes = [this.player2,this.player1]; 
 
-    this.service.atacar(this.listPersonajes,1).subscribe(data =>{
+    console.log("Enviando ataque P2")
+    const data$ = this.service.atacar(this.listPersonajes,1);
 
+    console.log("Suscribiendose")
+    data$.subscribe(data => 
       console.log("Personaje enviado desde la API: \n"+
-                  "vida: "+data.vida+
+                  "daño: "+data.danho+
+                  "\nvida: "+data.vida+
                   "\nataque: "+data.attack+
                   "\ndefensa: "+data.defense+
                   "\nsabiduria: "+data.wisdom+
                   "\nsuerte: "+data.luck)
+    );
 
-      this.player2 = data;
+    this.player2 = await firstValueFrom(data$);
 
-      console.log(this.player1.danho)
+    console.log("Daño generado: "+this.player2.danho)
 
-      this.atacar.emit(this.player2);
-
-    });
+    this.atacar.emit(this.player2);
     
   }
 }
