@@ -1,3 +1,4 @@
+
 export class PersonajeModel{
 
     "@class"!:String;

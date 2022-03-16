@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { firstValueFrom, Subscriber } from 'rxjs';
 import { PersonajeModel } from 'src/app/models/PersonajeModel';
 import { PersonajesService } from 'src/app/services/personajes/personajes.service';
@@ -17,7 +18,7 @@ export class CardBattleP1Component implements OnInit {
   
   listPersonajes:PersonajeModel[] = [];
 
-  constructor(public personajesServices:PersonajesService, private service:ServicioService) { }
+  constructor(public personajesServices:PersonajesService, private service:ServicioService, private router:Router) { }
 
   ngOnInit(): void {
 
@@ -25,16 +26,16 @@ export class CardBattleP1Component implements OnInit {
 
   }
 
-  async lanzarPoder1(){
+  async lanzarPoder(idPoder:number){
 
-    console.log("Lanzando poder 1");
+    console.log("Lanzando poder "+idPoder);
 
     this.listPersonajes = [this.personajesServices.P1,this.personajesServices.P2];
     console.log("Personaje que ataca: "+this.personajesServices.P1.vida)
     console.log("Personaje que defiende: "+this.listPersonajes[1].vida)
     
     console.log("Enviando ataque P1")
-    const data$ = this.service.atacar(this.listPersonajes,1);
+    const data$ = this.service.atacar(this.listPersonajes,idPoder);
         
     console.log("Suscribiendose")
     data$.subscribe(data => {
@@ -54,6 +55,20 @@ export class CardBattleP1Component implements OnInit {
 
     this.atacar.emit(this.personajesServices.P1);
     
+  
+  }
+
+  
+  Rendirse(){
+    
+    this.personajesServices.P1.vida = 0;
+    this.atacar.emit(this.personajesServices.P2);
+
+  }
+
+  Abandonar(){
+    alert("Player1 ha abandonado la partida, severa loca.");
+    this.router.navigate([""]);
   }
 
 
