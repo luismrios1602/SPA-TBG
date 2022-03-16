@@ -13,9 +13,6 @@ export class CardBattleP2Component implements OnInit {
 
   playername = "Player 2"; //Nombre que aparecerá en la card
 
-  player2!:PersonajeModel;
-
-  @Input() player1!: PersonajeModel;
 
   @Output() atacar = new EventEmitter<PersonajeModel>(); //Evento que enviará los datos al componente padre (enviará el daño)
   listPersonajes:PersonajeModel[] = []; //Lista de personajes que se enviará al servicio que requiere ambos personajes
@@ -24,18 +21,15 @@ export class CardBattleP2Component implements OnInit {
 
   ngOnInit(): void {
 
-    this.player1	= this.personajesServices.P1;
-    this.player2 = this.personajesServices.P2;
-
-    //Cargamos la lista de personajes con el personaje actual y el P2 -> El orden es que el personaje que va primero es el que ataca
-    this.listPersonajes = [this.player2,this.player1]; 
+    //Cargamos la lista de personajes con el personaje actual y el P1 -> El orden es que el personaje que va primero es el que ataca
+    this.listPersonajes = [this.personajesServices.P2,this.personajesServices.P1]; 
   }
 
   async lanzarPoder1(): Promise<void>{
 
     console.log("lanzando poder 1");
 
-    this.listPersonajes = [this.player2,this.player1]; 
+    this.listPersonajes = [this.personajesServices.P2,this.personajesServices.P1]; 
 
     console.log("Enviando ataque P2")
     const data$ = this.service.atacar(this.listPersonajes,1);
@@ -51,11 +45,11 @@ export class CardBattleP2Component implements OnInit {
                   "\nsuerte: "+data.luck)
     );
 
-    this.player2 = await firstValueFrom(data$);
+    this.personajesServices.P2 = await firstValueFrom(data$);
 
-    console.log("Daño generado: "+this.player2.danho)
+    console.log("Daño generado: "+this.personajesServices.P2.danho)
 
-    this.atacar.emit(this.player2);
+    this.atacar.emit(this.personajesServices.P2);
     
   }
 }

@@ -5,6 +5,7 @@ import { PersonajesService } from 'src/app/services/personajes/personajes.servic
 import { ServicioService } from 'src/app/services/servicio.service';
 import { CardBattleP1Component } from 'src/app/components/cards/cardBattle/card-battle-p1/card-battle-p1.component';
 import { firstValueFrom, Observable } from 'rxjs';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-battle',
@@ -22,11 +23,12 @@ export class BattleComponent implements OnInit {
   turno:number = 1;
   finishRound:boolean = false;
 
+  //Personajes para almacenar los personajes por defecto y mandarlos al services cuando se reinicie un turno
   player1!:PersonajeModel;
   player2!:PersonajeModel;
 
-  cardBattleP1!:CardBattleP1Component;
-  cardBattleP2!:CardBattleP1Component;
+  //cardBattleP1!:CardBattleP1Component;
+  //cardBattleP2!:CardBattleP1Component;
 
   @ViewChild("divP1",{static:true}) divP1!: ElementRef;
   @ViewChild("divP2",{static:true}) divP2!: ElementRef;
@@ -34,7 +36,7 @@ export class BattleComponent implements OnInit {
   @ViewChild("pbVidaP1",{static:true}) pbVidaP1!: ElementRef;
 
   constructor(private router:Router,
-              private personajesServices:PersonajesService, 
+              public personajesServices:PersonajesService, 
               private render:Renderer2, 
               private service:ServicioService) { 
 
@@ -43,6 +45,7 @@ export class BattleComponent implements OnInit {
 
   ngOnInit(): void {
 
+    //Encapsulamos en un try si uno de los personajes está vacío para volver a la ventana principal
     try{
       
       if (this.personajesServices.P1.name==undefined||this.personajesServices.P2.name==undefined) {
@@ -61,38 +64,92 @@ export class BattleComponent implements OnInit {
       this.router.navigate([""]);
     }
     
-
-    //this.cambiarTurno(1,this.player2);
+    //Activamos el cambiar turno para asignarle el turno 1 al P1
+    this.asignarTurno(1);
   }
 
-  async cambiarTurno(newTurno:number,playerAtaca:PersonajeModel){
+
+  /**
+   * Método para calcular el valor de la agresión y restarlo a la vida del personaje que defiende
+   * @param turnoActual --> Turno del personaje que ataca
+   * @param playerAtaca --> Objeto con las caracteristicas del personaje que ataca (Viene desde el CardBattle)
+   */
+  async batallar(turnoActual:number,playerAtaca:PersonajeModel){
+    
+    if (turnoActual == 1) {
+      //Si el turno es el 1 entonces el agresor es el P1
+
+      console.log("Defendiendose...")
+      //No defendemos con el P2
+      const data$ = this.service.defender(this.personajesServices.P2);
+
+      console.log("Subscribiendose...")
+      data$.subscribe(data => {
+
+        console.log("Personaje que defiende enviado desde la API: \n"+"daño: "+data.danho+"\nvida: "+data.vida+"\nataque: "+
+                      data.attack+"\ndefensa: "+data.defense+"\nsabiduria: "+data.wisdom+"\nsuerte: "+data.luck);
+      
+      });
+
+      this.personajesServices.P2 = await firstValueFrom(data$); //Esperamos que se haga el susbcribe y nos traemos el primer valor
+      this.personajesServices.P1 = playerAtaca;
+
+      console.log("Agrediendo... ");
+      var agresion = this.agredir(this.personajesServices.P1.danho,this.personajesServices.P2.proteccion);
+
+      console.log("Agresión: "+agresion);
+      this.personajesServices.P2.vida -= agresion;
+
+      console.log("Vida restante del P2: "+this.personajesServices.P2.vida);
+      this.asignarTurno(2);
+
+    } else if (turnoActual == 2) {
+      //Si el turno es el 2 entonces el agresor es el P2
+
+      console.log("Defendiendose...")
+      //No defendemos con el P1
+      const data$ = this.service.defender(this.personajesServices.P1);
+
+      console.log("Subscribiendose...")
+      data$.subscribe(data => {
+
+        console.log("Personaje que defiende enviado desde la API: \n"+"daño: "+data.danho+"\nvida: "+data.vida+"\nataque: "+
+                      data.attack+"\ndefensa: "+data.defense+"\nsabiduria: "+data.wisdom+"\nsuerte: "+data.luck);
+      
+      });
+
+      this.personajesServices.P1 = await firstValueFrom(data$); //Esperamos que se haga el susbcribe y nos traemos el primer valor
+      this.personajesServices.P2 = playerAtaca;
+
+      console.log("Agrediendo... ");
+      var agresion = this.agredir(this.personajesServices.P2.danho,this.personajesServices.P1.proteccion);
+
+      console.log("Agresión: "+agresion);
+      this.personajesServices.P1.vida -= agresion;
+
+      console.log("Vida restante del P1: "+this.personajesServices.P1.vida);
+      this.asignarTurno(1);
+
+    }
+
+    if (this.verificarVictoria()) {
+      this.personajesServices.P1 = this.player1;
+      this.personajesServices.P2 = this.player2;
+
+    }
+    
+  }
+
+
+/**
+ * Método para calcular 
+ * @param newTurno 
+ * @param playerAtaca 
+ */
+  async asignarTurno(newTurno:number){
 
     //Si el nuevo turno es el 1 es porque el que atacó fue el P2
     if (newTurno==1) {
-
-      this.player2 = playerAtaca;
-
-      console.log("Defendiendose...")
-      //No defendemos con el P1 
-      const data$ = this.service.defender(this.player1);
-
-      console.log("Subscribiendose")
-      data$.subscribe(data => {
-        console.log("Personaje enviado desde la API: \n"+
-                    "daño: "+data.danho+
-                    "\nvida: "+data.vida+
-                    "\nataque: "+data.attack+
-                    "\ndefensa: "+data.defense+
-                    "\nsabiduria: "+data.wisdom+
-                    "\nsuerte: "+data.luck)
-      });
-
-      this.player1 = await firstValueFrom(data$);
-
-      console.log("Agrediendo... ");
-      var agresion = this.agredir(playerAtaca.danho,this.player1.proteccion);
-      console.log("Agresión: "+agresion);
-      this.player1.vida -= agresion;
 
       //this.render.setValue(this.pbVidaP2.nativeElement,this.vidaP2.toString());
       this.turno=1;
@@ -100,59 +157,15 @@ export class BattleComponent implements OnInit {
       this.render.removeAttribute(this.divP1.nativeElement,"style");
       this.render.setAttribute(this.divP2.nativeElement,"style","pointer-events: none; opacity: 0.5;")
 
-      if (this.verificarVictoria()) {
-        //this.vidaP1 = this.personajesServices.P1.vida;
-        //this.vidaP2 = this.personajesServices.P2.vida;
-        alert("Termina el turno. \n"
-            +"Vida del P1 service: "+this.personajesServices.P1.vida);
-        this.player1 = this.personajesServices.P1;
-        this.player2 = this.personajesServices.P2;
-      }
-     
+      
       //Sino, si el nuevo turno es 2, es porque el que atacó fue el P1
     } else  if (newTurno==2) {
-
-      this.player1 = playerAtaca;
-
-      console.log("Defendiendose...")
-      //No defendemos con el P2 -> Como no sé esperar en el suscribe, entonces toca meter todo el código dentro
-      const data$ = this.service.defender(this.player2);
-
-      console.log("Suscribiendose")
-      data$.subscribe(data => {
-        console.log("Personaje defensa enviado desde la API: \n"+
-                    "proteccion: "+data.proteccion+
-                    "\nvida: "+data.vida+
-                    "\nataque: "+data.attack+
-                    "\ndefensa: "+data.defense+
-                    "\nsabiduria: "+data.wisdom+
-                    "\nsuerte: "+data.luck)
-
-      });
-
-      this.player2 = await firstValueFrom(data$);
-
-      console.log("Agrediendo... ");
-      var agresion = this.agredir(playerAtaca.danho,this.player2.proteccion);
-      console.log("Agreción: "+agresion)
-      this.player2.vida -= agresion;
 
       //this.render.setValue(this.pbVidaP2.nativeElement,""+this.vidaP2);
       this.turno = 2;
   
       this.render.removeAttribute(this.divP2.nativeElement,"style");
       this.render.setAttribute(this.divP1.nativeElement,"style","pointer-events: none; opacity: 0.5;")
-
-      if (this.verificarVictoria()) {
-        //this.vidaP1 = this.personajesServices.P1.vida;
-        //this.vidaP2 = this.personajesServices.P2.vida;
-        
-        alert("Termina el turno. \n"
-            +"Vida del P1 service: "+this.personajesServices.P1.vida);
-
-        this.player1 = this.personajesServices.P1;
-        this.player2 = this.personajesServices.P2;
-      }
       
     }
 
@@ -166,20 +179,25 @@ export class BattleComponent implements OnInit {
 
     this.finishRound = false;
 
-    if (this.player1.vida<=0) {
+    if (this.personajesServices.P1.vida <= 0) {
 
-      this.player1.vida=0;
+      this.personajesServices.P1.vida = 0;
       this.victoriasP2.push(1);
       this.finishRound = true;
+      alert("Victoria para el Player 2")
       this.rounds++;
+      this.asignarTurno(1);
 
-    } else if (this.player2.vida<=0) {
-      
-      this.player2.vida=0;
-      this.victoriasP1.push(1);
-      this.finishRound = true;
-      this.rounds++;
-    }
+     } else if (this.personajesServices.P2.vida <= 0) {
+
+        this.personajesServices.P2.vida=0;
+        this.victoriasP1.push(1);
+        this.finishRound = true;
+        alert("Victoria para el Player 1")
+        this.rounds++;
+        this.asignarTurno(2);
+        
+     } 
 
     return this.finishRound;
   }
@@ -198,4 +216,6 @@ export class BattleComponent implements OnInit {
     alert("Daño: "+danho+" | Protección: "+proteccion+" = Agresion: "+agresion)
     return agresion;
   }
+
+  
 }

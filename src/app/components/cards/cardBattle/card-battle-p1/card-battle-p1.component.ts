@@ -12,9 +12,6 @@ import { ServicioService } from 'src/app/services/servicio.service';
 export class CardBattleP1Component implements OnInit {
 
   playername = "Player 1";
-  player1!:PersonajeModel;
-
-  @Input() player2!: PersonajeModel;
 
   @Output() atacar = new EventEmitter<PersonajeModel>();
   
@@ -23,24 +20,25 @@ export class CardBattleP1Component implements OnInit {
   constructor(public personajesServices:PersonajesService, private service:ServicioService) { }
 
   ngOnInit(): void {
-    this.player1	= this.personajesServices.P1;
-    this.player2 = this.personajesServices.P2;
 
-    this.listPersonajes = [this.player1,this.player2];
+    this.listPersonajes = [this.personajesServices.P1,this.personajesServices.P2];
+
   }
 
   async lanzarPoder1(){
 
     console.log("Lanzando poder 1");
 
-    this.listPersonajes = [this.player1,this.player2];
-
+    this.listPersonajes = [this.personajesServices.P1,this.personajesServices.P2];
+    console.log("Personaje que ataca: "+this.personajesServices.P1.vida)
+    console.log("Personaje que defiende: "+this.listPersonajes[1].vida)
+    
     console.log("Enviando ataque P1")
     const data$ = this.service.atacar(this.listPersonajes,1);
         
     console.log("Suscribiendose")
     data$.subscribe(data => {
-      console.log("Personaje enviado desde la API: \n"+
+      console.log("Personaje que ataca enviado desde la API: \n"+
       "daño: "+data.danho+
       "\nvida: "+data.vida+
       "\nataque: "+data.attack+
@@ -50,11 +48,11 @@ export class CardBattleP1Component implements OnInit {
       
     });
 
-    this.player1 = await firstValueFrom(data$);
+    this.personajesServices.P1 = await firstValueFrom(data$);
 
-    console.log("Daño generado: "+this.player1.danho)
+    console.log("Daño generado: "+this.personajesServices.P1.danho)
 
-    this.atacar.emit(this.player1);
+    this.atacar.emit(this.personajesServices.P1);
     
   }
 
