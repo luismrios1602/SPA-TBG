@@ -98,6 +98,11 @@ export class BattleComponent implements OnInit {
       var agresion = this.agredir(this.personajesServices.P1.danho,this.personajesServices.P2.proteccion);
 
       console.log("Agresión: "+agresion);
+
+      this.narraccion = ("Player1 ("+this.personajesServices.P1.name+") lanza: "+this.personajesServices.P1.danho+" pts de daño!\n"+
+                        "Player2 ("+this.personajesServices.P2.name+") defiende con "+this.personajesServices.P2.proteccion+" pts de protección!\n"+
+                        "Player2 ("+this.personajesServices.P2.name+") pierde "+agresion+" pts de vida!\n--------------------\n")+this.narraccion;
+
       this.personajesServices.P2.vida -= agresion;
 
       console.log("Vida restante del P2: "+this.personajesServices.P2.vida);
@@ -123,6 +128,10 @@ export class BattleComponent implements OnInit {
 
       console.log("Agrediendo... ");
       var agresion = this.agredir(this.personajesServices.P2.danho,this.personajesServices.P1.proteccion);
+
+      this.narraccion = ("Player2 ("+this.personajesServices.P2.name+") lanza: "+this.personajesServices.P2.danho+" pts de daño!\n"+
+                        "Player1 ("+this.personajesServices.P1.name+") defiende con "+this.personajesServices.P1.proteccion+" pts de protección!\n"+
+                        "Player1 ("+this.personajesServices.P1.name+") pierde "+agresion+" pts de vida!\n--------------------\n")+this.narraccion;
 
       console.log("Agresión: "+agresion);
       this.personajesServices.P1.vida -= agresion;
@@ -184,7 +193,7 @@ export class BattleComponent implements OnInit {
       this.personajesServices.P1.vida = 0;
       this.victoriasP2.push(1);
       this.finishRound = true;
-      alert("Victoria para el Player 2")
+      this.narraccion = "¡VICTORIA PARA Player2 ("+this.personajesServices.P2.name+")!\n"+this.narraccion;
       this.rounds++;
       this.asignarTurno(1);
 
@@ -193,7 +202,7 @@ export class BattleComponent implements OnInit {
         this.personajesServices.P2.vida=0;
         this.victoriasP1.push(1);
         this.finishRound = true;
-        alert("Victoria para el Player 1")
+        this.narraccion = "¡VICTORIA PARA Player1 ("+this.personajesServices.P1.name+")!\n"+this.narraccion;
         this.rounds++;
         this.asignarTurno(2);
         
@@ -213,7 +222,6 @@ export class BattleComponent implements OnInit {
 
     }
 
-    alert("Daño: "+danho+" | Protección: "+proteccion+" = Agresion: "+agresion)
     return agresion;
   }
 
