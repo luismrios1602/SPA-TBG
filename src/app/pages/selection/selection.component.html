@@ -1,5 +1,5 @@
 <div class=" mt-5 mb-5 container border border-dark">
-    <div class="container">
+    <div class="container ps-5 pe-5">
         <div class="row">
             <div class="col-12 text-center mt-2">
                 <button class="btn btn-secondary" (click)="Volver()">VOLVER AL INICIO</button>
@@ -11,17 +11,17 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-5">
+            <div class="col-4">
                 <app-card-seleccion-p1 (habilitarCardP2)="habilitarCardP2()" ></app-card-seleccion-p1>
             </div>
-            <div class="col-2 text-center" style="margin-top: 15%;">
+            <div class="col-4 text-center" style="margin-top: 15%;">
                 <div #divBotones style="pointer-events: none;">
                     <button (click)="Batallar()" class="shadows-lg btn btn-success text-center mb-5">BATALLAR</button>
                     <h1 class="text-center"><strong>VS</strong></h1>
                     <button class="shadows-lg btn btn-danger text-center mt-5" (click)="Cancelar()">CANCELAR</button>
                 </div>
             </div>
-            <div class="col-5">
+            <div class="col-4">
                 <app-card-seleccion-p2 (habilitarBotones)="habilitarBotones($event)" [isEnableCard]="P1isSelected"></app-card-seleccion-p2>
             </div>
         </div>

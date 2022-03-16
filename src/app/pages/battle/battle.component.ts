@@ -193,7 +193,7 @@ export class BattleComponent implements OnInit {
       this.personajesServices.P1.vida = 0;
       this.victoriasP2.push(1);
       this.finishRound = true;
-      this.narraccion = "¡VICTORIA PARA Player2 ("+this.personajesServices.P2.name+")!\n"+this.narraccion;
+      this.narraccion = "¡VICTORIA PARA Player2 ("+this.personajesServices.P2.name+")!\n--------------------\n"+this.narraccion;
       this.rounds++;
       this.asignarTurno(1);
 
@@ -202,7 +202,7 @@ export class BattleComponent implements OnInit {
         this.personajesServices.P2.vida=0;
         this.victoriasP1.push(1);
         this.finishRound = true;
-        this.narraccion = "¡VICTORIA PARA Player1 ("+this.personajesServices.P1.name+")!\n"+this.narraccion;
+        this.narraccion = "¡VICTORIA PARA Player1 ("+this.personajesServices.P1.name+")!\n--------------------\n"+this.narraccion;
         this.rounds++;
         this.asignarTurno(2);
         

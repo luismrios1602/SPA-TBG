@@ -22,14 +22,14 @@
         </div>
     </div>
     <div class="row">
-        <div #divP1 class="col-5">
+        <div #divP1 class="col-4">
             <app-card-battle-p1 (atacar)="batallar(1,$event)"></app-card-battle-p1>
         </div>
-        <div class="col-2">
+        <div class="col-4">
             <p class="text-center">Batalla</p>
             <textarea disabled rows="30" cols="20" class="form-control text-center p-1">{{narraccion}}</textarea>
         </div>
-        <div #divP2 style="pointer-events: none;" class="col-5">
+        <div #divP2 style="pointer-events: none;" class="col-4">
             <app-card-battle-p2 (atacar)="batallar(2,$event)"></app-card-battle-p2>
         </div>
     </div>
