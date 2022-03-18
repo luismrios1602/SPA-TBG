@@ -3,9 +3,7 @@ import { Router } from '@angular/router';
 import { PersonajeModel } from 'src/app/models/PersonajeModel';
 import { PersonajesService } from 'src/app/services/personajes/personajes.service';
 import { ServicioService } from 'src/app/services/servicio.service';
-import { CardBattleP1Component } from 'src/app/components/cards/cardBattle/card-battle-p1/card-battle-p1.component';
-import { firstValueFrom, Observable } from 'rxjs';
-import { ThisReceiver } from '@angular/compiler';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-battle',
@@ -46,7 +44,7 @@ export class BattleComponent implements OnInit {
   ngOnInit(): void {
 
     //Encapsulamos en un try si uno de los personajes está vacío para volver a la ventana principal
-    try{
+    try {
       
       if (this.personajesServices.P1.name==undefined||this.personajesServices.P2.name==undefined) {
 
@@ -60,8 +58,11 @@ export class BattleComponent implements OnInit {
         //this.vidaP2 = this.personajesServices.P2.vida;
   
       }
-    } catch{
+
+    } catch {
+
       this.router.navigate([""]);
+
     }
     
     //Activamos el cambiar turno para asignarle el turno 1 al P1
@@ -76,7 +77,7 @@ export class BattleComponent implements OnInit {
    */
   async batallar(turnoActual:number,playerAtaca:PersonajeModel){
     
-    if (turnoActual == 1) {
+     if (turnoActual == 1) {
       //Si el turno es el 1 entonces el agresor es el P1
 
       console.log("Defendiendose...")
@@ -144,7 +145,6 @@ export class BattleComponent implements OnInit {
     if (this.verificarVictoria()) {
       this.personajesServices.P1 = this.player1;
       this.personajesServices.P2 = this.player2;
-
     }
     
   }
@@ -190,16 +190,16 @@ export class BattleComponent implements OnInit {
 
     if (this.personajesServices.P1.vida <= 0) {
 
-      this.personajesServices.P1.vida = 0;
+      this.personajesServices.P1 = this.player1;
       this.victoriasP2.push(1);
       this.finishRound = true;
       this.narraccion = "¡VICTORIA PARA Player2 ("+this.personajesServices.P2.name+")!\n--------------------\n"+this.narraccion;
       this.rounds++;
       this.asignarTurno(1);
 
-     } else if (this.personajesServices.P2.vida <= 0) {
+    } else if (this.personajesServices.P2.vida <= 0) {
 
-        this.personajesServices.P2.vida=0;
+        this.personajesServices.P2 = this.player2;
         this.victoriasP1.push(1);
         this.finishRound = true;
         this.narraccion = "¡VICTORIA PARA Player1 ("+this.personajesServices.P1.name+")!\n--------------------\n"+this.narraccion;

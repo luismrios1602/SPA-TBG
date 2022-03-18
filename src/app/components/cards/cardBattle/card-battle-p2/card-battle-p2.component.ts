@@ -54,17 +54,12 @@ export class CardBattleP2Component implements OnInit {
     
   }
 
-  Rendirse(){
-    
-    this.personajesServices.P2.vida = 0;
-    this.atacar.emit(this.personajesServices.P2);
-
-  }
-
   Abandonar(){
     alert("Player2 ha abandonado la partida, severa loca.");
     this.router.navigate([""]);
   }
+
+  
 
 
 }

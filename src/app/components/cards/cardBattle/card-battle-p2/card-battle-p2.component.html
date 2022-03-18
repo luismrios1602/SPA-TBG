@@ -2,81 +2,105 @@
     <div class="container">
         <h3 class="text-center">{{playername}}</h3>
         <div class="form">
-            <div class="row mt-2">
-                <div class="col-12 text-center">
-                    <img src="/assets/{{personajesServices.P2.image}}.jpg" alt="Imagen del Personaje" class="img-fluid img-thumbnail rounded">
-                </div>
-            </div>
-            <div class="row mt-2">
-                <div class="col-2 p-2">
-                    <h6>Ataque: </h6>
-                </div>
-                <div class="col-10">
-                    <progress max="500" value="{{personajesServices.P2.attack}}" class="form-control h-75"></progress>
-                </div>
-            </div>
-            <div class="row mt-2">
-                <div class="col-2 p-2">
-                    <h6>Defensa: </h6>
-                </div>
-                <div class="col-10">
-                    <progress max="500" value="{{personajesServices.P2.defense}}" class="form-control h-75"></progress>
-                </div>
-            </div>
-            <div class="row mt-2">
-                <div class="col-2 p-2">
-                    <h6>Sabiduría: </h6>
-                </div>
-                <div class="col-10">
-                    <progress max="500" value="{{personajesServices.P2.wisdom}}" class="form-control h-75"></progress>
-                </div>
-            </div>                
-            <div class="row mt-2">
-                <div class="col-2 p-2">
-                    <h6>Suerte: </h6>
-                </div>
-                <div class="col-10">
-                    
-                    <progress max="100" value="{{personajesServices.P2.luck}}" class="form-control h-75"></progress>
-                </div>
-            </div>
-            <div class="shadow-lg row mt-2 text-center">
-                <div  class="col-12 border-2 border-light rounded">
-                    <div class="row">
-                        <div class="col-4">
-                            <button (click)="lanzarPoder(1)" class="btn btn-primary m-2">Poder 1</button>
-                        </div>
-                        <div class="col-4">
-                            <button (click)="lanzarPoder(2)" class="btn btn-primary m-2">Poder 2</button>
-                        </div>
-                        <div class="col-4">
-                            <button (click)="lanzarPoder(3)" class="btn btn-primary m-2">Poder 3</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-4">
-                            <button (click)="lanzarPoder(4)" class="btn btn-primary m-2">Poder 4</button>
-                        </div>
-                        <div class="col-4">
-                            <button (click)="lanzarPoder(5)" class="btn btn-primary m-2">Poder 5</button>
-                        </div>
-                        <div class="col-4">
-                            <button (click)="Rendirse()" class="btn btn-secondary m-2">Rendirse</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3">
-                            
-                        </div>
-                        <div class="col-6">
-                            <button (click)="Abandonar()" class="btn btn-danger m-2">Abandonar</button>
-                        </div>
-                        <div class="col-3">
-                            
-                        </div>
+                <div class="row mt-2">
+                    <div class="col-12 text-center">
+                        <img src="/assets/{{personajesServices.P2.image}}.jpg" alt="Imagen del Personaje" class="img-fluid img-thumbnail rounded">
                     </div>
                 </div>
-            </div>
+                <div class="row mt-2">
+                    <div class="col-2 p-2">
+                        <h6>Ataque: </h6>
+                    </div>
+                    <div class="col-1">
+
+                    </div>
+                    <div class="col-9">
+                        <progress max="500" value="{{personajesServices.P2.attack}}" class="form-control h-75"></progress>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-2 p-2">
+                        <h6>Defensa: </h6>
+                    </div>
+                    <div class="col-1">
+
+                    </div>
+                    <div class="col-9">
+                        <progress max="500" value="{{personajesServices.P2.defense}}" class="form-control h-75"></progress>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-2 p-2">
+                        <h6>Sabiduría: </h6>
+                    </div>
+                    <div class="col-1">
+
+                    </div>
+                    <div class="col-9">
+                        <progress max="500" value="{{personajesServices.P2.wisdom}}" class="form-control h-75"></progress>
+                    </div>
+                </div>                
+                <div class="row mt-2">
+                    <div class="col-2 p-2">
+                        <h6>Suerte: </h6>
+                    </div>
+                    <div class="col-1">
+
+                    </div>
+                    <div class="col-9">
+                        <progress max="100" value="{{personajesServices.P2.luck}}" class="form-control h-75"></progress>
+                    </div>
+                </div>
+                <div class="shadow-lg row mt-2 text-center">
+                    <div class="col-12 border-2 border-light rounded">
+                        <div class="row mt-2">
+                            <div class="col-6">
+                                <button (click)="lanzarPoder(1)" title="{{personajesServices.P2.poderes[0].description}}" class="btn btn-primary" >
+                                    {{personajesServices.P2.poderes[0].name}}
+                                </button>
+                            </div>
+                            <div class="col-6">
+                                <button (click)="lanzarPoder(2)" title="{{personajesServices.P2.poderes[1].description}}" class="btn btn-primary" >
+                                    {{personajesServices.P2.poderes[1].name}}
+                                </button>
+                            </div>
+
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6">
+                                <button (click)="lanzarPoder(3)" title="{{personajesServices.P2.poderes[2].description}}" class="btn btn-primary" >
+                                    {{personajesServices.P2.poderes[2].name}}
+                                </button>
+                            </div>
+                            <div class="col-6">
+                                <button (click)="lanzarPoder(4)" title="{{personajesServices.P2.poderes[3].description}}" class="btn btn-primary" >
+                                    {{personajesServices.P2.poderes[3].name}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6">
+                                <button (click)="lanzarPoder(5)" title="{{personajesServices.P2.poderes[4].description}}" class="btn btn-primary" >
+                                    {{personajesServices.P2.poderes[4].name}}
+                                </button>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn btn-secondary">Rendirse</button>
+                            </div>
+                        </div>
+                        <div class="row mt-2 mb-2">
+                            <div class="col-3">
+                                
+                            </div>
+                            <div class="col-6">
+                                <button (click)="Abandonar()" class="btn btn-danger">Abandonar</button>
+                            </div>
+                            <div class="col-3">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
 </div>

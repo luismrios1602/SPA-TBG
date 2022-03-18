@@ -15,6 +15,7 @@ export class CardBattleP1Component implements OnInit {
   playername = "Player 1";
 
   @Output() atacar = new EventEmitter<PersonajeModel>();
+  @Output() rendirse = new EventEmitter();
   
   listPersonajes:PersonajeModel[] = [];
 
@@ -56,14 +57,6 @@ export class CardBattleP1Component implements OnInit {
     this.atacar.emit(this.personajesServices.P1);
     
   
-  }
-
-  
-  Rendirse(){
-    
-    this.personajesServices.P1.vida = 0;
-    this.atacar.emit(this.personajesServices.P2);
-
   }
 
   Abandonar(){

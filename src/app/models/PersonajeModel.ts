@@ -1,3 +1,4 @@
+import { PoderModel } from "./PoderModel";
 
 export class PersonajeModel{
 
@@ -13,6 +14,7 @@ export class PersonajeModel{
     proteccion!:number; //La protección adquirida en su turno de defensa
     victorias!:number; //Las victorias que lleva en la partida (1, 2, o 3)
     image!:number;
+    poderes!:PoderModel[]
 
     constructor(){
         
