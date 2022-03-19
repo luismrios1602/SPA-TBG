@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-10">
                         <select #comboPerson (change)="selectPerson(comboPerson.value)" class="form-select ms-3" name="" id="">
-                            <option *ngFor="let iPersonaje of listPersonajes" value="{{iPersonaje.name}}">{{iPersonaje.name}}</option>
+                            <option *ngFor="let iPersonaje of listPersonajes" value="{{iPersonaje.type}}">{{iPersonaje.type}}</option>
                         </select>
                     </div>
                 </div>

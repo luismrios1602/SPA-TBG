@@ -100,9 +100,9 @@ export class BattleComponent implements OnInit {
 
       console.log("Agresión: "+agresion);
 
-      this.narraccion = ("Player1 ("+this.personajesServices.P1.name+") lanza: "+this.personajesServices.P1.danho+" pts de daño!\n"+
-                        "Player2 ("+this.personajesServices.P2.name+") defiende con "+this.personajesServices.P2.proteccion+" pts de protección!\n"+
-                        "Player2 ("+this.personajesServices.P2.name+") pierde "+agresion+" pts de vida!\n--------------------\n")+this.narraccion;
+      this.narraccion = (this.personajesServices.P1.name + " ("+this.personajesServices.P1.type+") lanza: "+this.personajesServices.P1.danho+" pts de daño!\n"+
+                        this.personajesServices.P2.name+" ("+this.personajesServices.P2.type+") defiende con "+this.personajesServices.P2.proteccion+" pts de protección!\n"+
+                        this.personajesServices.P2.name+" ("+this.personajesServices.P2.type+") pierde "+agresion+" pts de vida!\n--------------------\n")+this.narraccion;
 
       this.personajesServices.P2.vida -= agresion;
 
@@ -130,9 +130,9 @@ export class BattleComponent implements OnInit {
       console.log("Agrediendo... ");
       var agresion = this.agredir(this.personajesServices.P2.danho,this.personajesServices.P1.proteccion);
 
-      this.narraccion = ("Player2 ("+this.personajesServices.P2.name+") lanza: "+this.personajesServices.P2.danho+" pts de daño!\n"+
-                        "Player1 ("+this.personajesServices.P1.name+") defiende con "+this.personajesServices.P1.proteccion+" pts de protección!\n"+
-                        "Player1 ("+this.personajesServices.P1.name+") pierde "+agresion+" pts de vida!\n--------------------\n")+this.narraccion;
+      this.narraccion = (this.personajesServices.P2.name + " ("+this.personajesServices.P2.type+") lanza: "+this.personajesServices.P2.danho+" pts de daño!\n"+
+                        this.personajesServices.P1.name+" ("+this.personajesServices.P1.type+") defiende con "+this.personajesServices.P1.proteccion+" pts de protección!\n"+
+                        this.personajesServices.P1.name+" ("+this.personajesServices.P1.type+") pierde "+agresion+" pts de vida!\n--------------------\n")+this.narraccion;
 
       console.log("Agresión: "+agresion);
       this.personajesServices.P1.vida -= agresion;

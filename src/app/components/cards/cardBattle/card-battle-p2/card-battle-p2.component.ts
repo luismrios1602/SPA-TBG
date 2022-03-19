@@ -12,8 +12,7 @@ import { ServicioService } from 'src/app/services/servicio.service';
 })
 export class CardBattleP2Component implements OnInit {
 
-  playername = "Player 2"; //Nombre que aparecerá en la card
-
+  playername = this.personajesServices.P2.name; //Nombre que aparecerá en la card
 
   @Output() atacar = new EventEmitter<PersonajeModel>(); //Evento que enviará los datos al componente padre (enviará el daño)
   listPersonajes:PersonajeModel[] = []; //Lista de personajes que se enviará al servicio que requiere ambos personajes

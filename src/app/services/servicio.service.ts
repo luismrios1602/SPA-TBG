@@ -24,11 +24,11 @@ export class ServicioService {
 
   /**
    * Método del servicio para ver la información de un personaje desde la API
-   * @param nombre Nombre del tipo de personaje
+   * @param tipo Tipo de personaje
    * @returns Personaje consultado
    */
-  getPersonaje(nombre:String){
-    return this.http.get<PersonajeModel>(this.Url+"/personaje/"+nombre);
+  getPersonaje(tipo:String){
+    return this.http.get<PersonajeModel>(this.Url+"/personaje/"+tipo);
   }
 
   /**

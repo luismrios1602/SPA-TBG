@@ -12,7 +12,7 @@ import { ServicioService } from 'src/app/services/servicio.service';
 })
 export class CardBattleP1Component implements OnInit {
 
-  playername = "Player 1";
+  playername = this.personajesServices.P1.name;
 
   @Output() atacar = new EventEmitter<PersonajeModel>();
   @Output() rendirse = new EventEmitter();

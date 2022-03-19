@@ -23,14 +23,15 @@ export class HomeComponent implements OnInit {
       case "PVP":
         this.personajesServices.P1Name = "Player 1";
         this.personajesServices.P2Name = "Player 2";
-        this.router.navigate(["selection"])
+        this.router.navigate(["selection"]);
         break;
 
       case "PVCPU":
         this.personajesServices.P1Name = "Player 1";
         this.personajesServices.P2Name = "CPU 2";
-        this.router.navigate(["selection"])
+        this.router.navigate(["selection"]);
         break;
+        
       default:
         break;
     }

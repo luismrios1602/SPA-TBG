@@ -4,7 +4,7 @@ export class PersonajeModel{
 
     "@class"!:String;
     name!:String;
-    tipo!:String;
+    type!:String;
     vida!:number;
     attack!:number;
     defense!:number;

@@ -22,23 +22,31 @@ export class CardSeleccionP1Component implements OnInit {
   constructor(private servicio:ServicioService, private personajeService:PersonajesService,private render:Renderer2) { }
 
   ngOnInit(): void {
+
     this.servicio.getPersonajes().subscribe(data => {
       this.listPersonajes = data;
-    })
+    });
+
     this.selectPerson("Mago");
+
   }
 
   selectPerson(tipoPerson:string){
+
     this.servicio.getPersonaje(tipoPerson).subscribe(data => {
       this.personSelected = data;
     });
+
   }
 
   escogerPersonaje(){
+
     this.personajeService.P1 = this.personSelected;
     this.personajeService.P1.vida = 999;
+    this.personajeService.P1.name = this.playername;
     this.habilitarCardP2.emit(true);
-    this.render.addClass(this.divCardP1.nativeElement,"readyP1")
+    this.render.addClass(this.divCardP1.nativeElement,"readyP1");
+
   }
 
 }

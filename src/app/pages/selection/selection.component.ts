@@ -13,15 +13,20 @@ export class SelectionComponent implements OnInit {
   P1isSelected:boolean = false;
   P2isSelected:boolean = false;
 
-  isCPU:boolean = true;
+  isCPU!:boolean;
 
   constructor(private router:Router, private render:Renderer2, private personajesService:PersonajesService) { }
 
   ngOnInit(): void {
+
     if (this.personajesService.P2Name == "Player 2") {
+
       this.isCPU = false;
-    } else if (this.personajesService.P2Name == "CPU 2") {
       
+    } else if (this.personajesService.P2Name == "CPU 2") {
+
+      this.isCPU = true;
+
     }
   }
 
@@ -30,11 +35,12 @@ export class SelectionComponent implements OnInit {
   }
 
   Batallar(){
+
     try {
 
       if (this.personajesService.P1.name==undefined||this.personajesService.P2.name==undefined) {
         
-        alert("Escoger el personaje 1")
+        alert("Escoger los personajes");
 
       } else {
 
@@ -50,14 +56,18 @@ export class SelectionComponent implements OnInit {
   }
 
   Cancelar(){ 
+
     window.location.reload();
+
   }
 
   habilitarBotones(habilitar:boolean){
     this.P2isSelected = habilitar;
+
     if (this.P2isSelected) {
       
       this.render.removeAttribute(this.divBotones.nativeElement,"style");
+
     } else {
       //this.render.setAttribute(this.divBotones.nativeElement,"style","pointer-events: none;");
     }

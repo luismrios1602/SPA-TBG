@@ -15,7 +15,7 @@
                         <label class="form-label mt-2" for="name">Personaje: </label>
                     </div>
                     <div class="col-10">
-                        <select #comboPerson (change)="selectPerson(comboPerson.value)" class="form-select ms-3" name="" id="" [value]="this.personSelected.name">
+                        <select #comboPerson (change)="selectPerson(comboPerson.value)" class="form-select ms-3" name="" id="" [value]="this.personSelected.type">
                             <option *ngFor="let iPersonaje of listPersonajes" value="{{iPersonaje.name}}">{{iPersonaje.name}}</option>
                         </select>
                     </div>
