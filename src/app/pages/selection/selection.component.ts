@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { PersonajesService } from 'src/app/services/personajes/personajes.service';
 
@@ -13,10 +13,16 @@ export class SelectionComponent implements OnInit {
   P1isSelected:boolean = false;
   P2isSelected:boolean = false;
 
+  isCPU:boolean = true;
+
   constructor(private router:Router, private render:Renderer2, private personajesService:PersonajesService) { }
 
   ngOnInit(): void {
-    
+    if (this.personajesService.P2Name == "Player 2") {
+      this.isCPU = false;
+    } else if (this.personajesService.P2Name == "CPU 2") {
+      
+    }
   }
 
   Volver(){
@@ -24,10 +30,21 @@ export class SelectionComponent implements OnInit {
   }
 
   Batallar(){
-    if (this.personajesService.P1.name==undefined||this.personajesService.P2.name==undefined) {
-      alert("Escoger el personaje 1")
-    } else {
-      this.router.navigate(["loading"]);
+    try {
+
+      if (this.personajesService.P1.name==undefined||this.personajesService.P2.name==undefined) {
+        
+        alert("Escoger el personaje 1")
+
+      } else {
+
+        this.router.navigate(["loading"]);
+      }
+
+    } catch (error) {
+
+      alert("Escoger los personajes");
+
     }
     
   }

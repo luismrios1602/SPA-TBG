@@ -37,7 +37,6 @@ export class CardSeleccionP1Component implements OnInit {
   escogerPersonaje(){
     this.personajeService.P1 = this.personSelected;
     this.personajeService.P1.vida = 999;
-    this.personajeService.P1Name = "Player 1";
     this.habilitarCardP2.emit(true);
     this.render.addClass(this.divCardP1.nativeElement,"readyP1")
   }

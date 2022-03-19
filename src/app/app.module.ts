@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { SelectionComponent } from './pages/selection/selection.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -13,6 +14,7 @@ import { CardPreviewP2Component } from './components/cards/cardPreview/card-prev
 import { CardBattleP1Component } from './components/cards/cardBattle/card-battle-p1/card-battle-p1.component';
 import { CardBattleP2Component } from './components/cards/cardBattle/card-battle-p2/card-battle-p2.component';
 import { BattleComponent } from './pages/battle/battle.component';
+import { CardSeleccionCpu2Component } from './components/cards/cardsSelection/card-seleccion-cpu2/card-seleccion-cpu2.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { BattleComponent } from './pages/battle/battle.component';
     CardPreviewP2Component,
     CardBattleP1Component,
     CardBattleP2Component,
-    BattleComponent
+    BattleComponent,
+    CardSeleccionCpu2Component
   ],
   imports: [
     BrowserModule,

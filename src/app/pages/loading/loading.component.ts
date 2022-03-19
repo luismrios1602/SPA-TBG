@@ -17,7 +17,7 @@ export class LoadingComponent implements OnInit {
   timeLeft: number = 2;
   interval:any;
 
-startTimer() {
+  startTimer() {
     this.interval = setInterval(() => {
       if(this.timeLeft > 0) {
         this.timeLeft--;

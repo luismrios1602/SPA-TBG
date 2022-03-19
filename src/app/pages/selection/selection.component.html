@@ -22,7 +22,8 @@
                 </div>
             </div>
             <div class="col-5">
-                <app-card-seleccion-p2 (habilitarBotones)="habilitarBotones($event)" [isEnableCard]="P1isSelected"></app-card-seleccion-p2>
+                <app-card-seleccion-cpu2 *ngIf="isCPU" (habilitarBotones)="habilitarBotones($event)" [isEnableCard]="P1isSelected"></app-card-seleccion-cpu2>
+                <app-card-seleccion-p2 *ngIf="!isCPU" (habilitarBotones)="habilitarBotones($event)" [isEnableCard]="P1isSelected"></app-card-seleccion-p2>
             </div>
         </div>
     </div>

@@ -12,6 +12,6 @@ export class PersonajesService {
   P2Name !: string;
 
   constructor() {
-    
+      
    }
 }
