@@ -55,12 +55,12 @@
                     <div class="col-12 border-2 border-light rounded">
                         <div class="row mt-2">
                             <div class="col-6">
-                                <button (click)="lanzarPoder(1)" title="{{personajesServices.P2.poderes[0].description}}" class="btn btn-primary" >
+                                <button #btnPoder1 (click)="lanzarPoder(1)" title="{{personajesServices.P2.poderes[0].description}}" class="btn btn-primary" >
                                     {{personajesServices.P2.poderes[0].name}}
                                 </button>
                             </div>
                             <div class="col-6">
-                                <button (click)="lanzarPoder(2)" title="{{personajesServices.P2.poderes[1].description}}" class="btn btn-primary" >
+                                <button #btnPoder2 (click)="lanzarPoder(2)" title="{{personajesServices.P2.poderes[1].description}}" class="btn btn-primary" >
                                     {{personajesServices.P2.poderes[1].name}}
                                 </button>
                             </div>
@@ -68,19 +68,19 @@
                         </div>
                         <div class="row mt-2">
                             <div class="col-6">
-                                <button (click)="lanzarPoder(3)" title="{{personajesServices.P2.poderes[2].description}}" class="btn btn-primary" >
+                                <button #btnPoder3 (click)="lanzarPoder(3)" title="{{personajesServices.P2.poderes[2].description}}" class="btn btn-primary" >
                                     {{personajesServices.P2.poderes[2].name}}
                                 </button>
                             </div>
                             <div class="col-6">
-                                <button (click)="lanzarPoder(4)" title="{{personajesServices.P2.poderes[3].description}}" class="btn btn-primary" >
+                                <button #btnPoder4 (click)="lanzarPoder(4)" title="{{personajesServices.P2.poderes[3].description}}" class="btn btn-primary" >
                                     {{personajesServices.P2.poderes[3].name}}
                                 </button>
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-6">
-                                <button (click)="lanzarPoder(5)" title="{{personajesServices.P2.poderes[4].description}}" class="btn btn-primary" >
+                                <button #btnPoder5 (click)="lanzarPoder(5)" title="{{personajesServices.P2.poderes[4].description}}" class="btn btn-primary" >
                                     {{personajesServices.P2.poderes[4].name}}
                                 </button>
                             </div>

@@ -35,13 +35,14 @@
     </div>
     <div class="row">
         <div #divP1 class="col-5">
-            <app-card-battle-p1 (rendirse)="verificarVictoria()" (atacar)="batallar(1,$event)"></app-card-battle-p1>
+            <app-card-battle-p1 (atacar)="batallar(1,$event)"></app-card-battle-p1>
         </div>
         <div class="col-2">
 
         </div>
         <div #divP2 style="pointer-events: none;" class="col-5">
-            <app-card-battle-p2 (atacar)="batallar(2,$event)"></app-card-battle-p2>
+            <app-card-battle-cpu2 *ngIf="this.personajesServices.P2.name=='CPU 2'" (atacar)="batallar(2,$event)" [turno]="turno"></app-card-battle-cpu2>
+            <app-card-battle-p2 *ngIf="!(this.personajesServices.P2.name=='CPU 2')" (atacar)="batallar(2,$event)"></app-card-battle-p2>
         </div>
     </div>
 </div>

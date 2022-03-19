@@ -27,6 +27,10 @@ export class SelectionComponent implements OnInit {
 
       this.isCPU = true;
 
+    } else {
+
+      this.router.navigate([""]);
+
     }
   }
 
@@ -43,7 +47,7 @@ export class SelectionComponent implements OnInit {
         alert("Escoger los personajes");
 
       } else {
-
+        
         this.router.navigate(["loading"]);
       }
 
@@ -62,6 +66,7 @@ export class SelectionComponent implements OnInit {
   }
 
   habilitarBotones(habilitar:boolean){
+
     this.P2isSelected = habilitar;
 
     if (this.P2isSelected) {

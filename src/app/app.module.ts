@@ -15,6 +15,7 @@ import { CardBattleP1Component } from './components/cards/cardBattle/card-battle
 import { CardBattleP2Component } from './components/cards/cardBattle/card-battle-p2/card-battle-p2.component';
 import { BattleComponent } from './pages/battle/battle.component';
 import { CardSeleccionCpu2Component } from './components/cards/cardsSelection/card-seleccion-cpu2/card-seleccion-cpu2.component';
+import { CardBattleCpu2Component } from './components/cards/cardBattle/card-battle-cpu2/card-battle-cpu2.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CardSeleccionCpu2Component } from './components/cards/cardsSelection/ca
     CardBattleP1Component,
     CardBattleP2Component,
     BattleComponent,
-    CardSeleccionCpu2Component
+    CardSeleccionCpu2Component,
+    CardBattleCpu2Component
   ],
   imports: [
     BrowserModule,
