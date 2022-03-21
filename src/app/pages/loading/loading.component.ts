@@ -11,25 +11,41 @@ export class LoadingComponent implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit(): void {
-    this.startTimer();
+
+    //Al inicial el componente, iniciamos el contador para esperar los segundos colocados
+    this.startTimer(); 
+
   }
 
-  timeLeft: number = 2;
-  interval:any;
+  timeLeft: number = 2; //Segundos a esperar
+  interval:any; //Intervalo de tiempo a asignar en milisegundos
 
+  /**
+   * Método para inciar el contador
+   */
   startTimer() {
+
     this.interval = setInterval(() => {
+
       if(this.timeLeft > 0) {
         this.timeLeft--;
       } else {
         this.pauseTimer();
         this.router.navigate(["battle"]);
       }
-    },1000)
+      
+    },1000);
+    
   }
 
+  /**
+   * Método para detener el contador
+   */
   pauseTimer() {
+
+    //Limpiamos el intervalo y esto lo reincia
     clearInterval(this.interval);
+
   }
 
 }

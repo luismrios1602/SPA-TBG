@@ -1,10 +1,13 @@
+<!--*Ïnicio DIV para colocar una imagen de fondo que no afecte el resto de elementos y se pueda ajustar la opacidad-->
 <div style="z-index: -1; position: fixed; border: black solid 3px; opacity: 0.1; width: 100%; height: 100%;">
     <img src="/assets/backgrounds/bgbattle.jpg" alt="" class="w-100">
 </div>
+<!--#Fin DIV para colocar una imagen de fondo-->
 <div style="z-index: 1;" class="p-5 mb-5 container border border-dark">
     <div class="row">
-       
+       <!--Fila en blanco para maximizar el espacio entre el top y los elementos-->
     </div>
+    <!--*Inicio fila con progress bar de vida de los personajes-->
     <div class="row mb-4">
         <div class="col-5">
             <h6>{{personajesServices.P1.vida}}</h6>
@@ -21,28 +24,33 @@
             <div *ngFor="let item of victoriasP2" class="circle-red float-end"></div>
         </div>
     </div>
+    <!--#Fin fila con progress bar de vida -->
     <div class="row">
         <div class="col-2">
-
+            <!--Columna vacía para centrar-->
         </div>
         <div class="col-8">
             <p class="text-center">Batalla</p>
             <textarea disabled rows="3" class="form-control text-center p-1">{{narraccion}}</textarea>
         </div>
         <div class="col-2">
-
+            <!--Columna vacía para centrar-->
         </div>
     </div>
+    <!--#Fin fila de elementos de narración-->
+    <!--*Inicio fila de cards battles-->
     <div class="row">
         <div #divP1 class="col-5">
             <app-card-battle-p1 (atacar)="batallar(1,$event)"></app-card-battle-p1>
         </div>
         <div class="col-2">
-
+            <!--Columna vacía para separar y centrar cards-->    
         </div>
         <div #divP2 style="pointer-events: none;" class="col-5">
+            <!--Usamos el ngIf para definir si usamos el componente de P2 o CPU2 [atacar => ouput del componente], [turno => para definir si le toca al P2 y activarse]-->
             <app-card-battle-cpu2 *ngIf="this.personajesServices.P2.name=='CPU 2'" (atacar)="batallar(2,$event)" [turno]="turno"></app-card-battle-cpu2>
             <app-card-battle-p2 *ngIf="!(this.personajesServices.P2.name=='CPU 2')" (atacar)="batallar(2,$event)"></app-card-battle-p2>
         </div>
     </div>
+    <!--*Fin fila de cards battles-->
 </div>

@@ -9,7 +9,9 @@ import { PersonajesService } from 'src/app/services/personajes/personajes.servic
 })
 export class CardPreviewP1Component implements OnInit {
 
+    /**Nombre del P1 que aparecerá en la card (Se modifica en la vista dependiendo al nombre del personajesServices.P1.name) */
   playername:String = "Player 1";
+    /**Objeto local que almacenará el P1 seleccionado */
   player1:PersonajeModel = new PersonajeModel();
 
   constructor(private personajesService:PersonajesService) { }

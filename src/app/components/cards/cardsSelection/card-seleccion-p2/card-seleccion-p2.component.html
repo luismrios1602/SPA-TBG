@@ -1,16 +1,18 @@
 <div #divCardP2 class="shadow-lg rounded mt-3 mb-5 container border border-dark p-4">
     <div class="container" >
         <h3 class="text-center mb-3">{{playername}}</h3>
+        <!--*Inicio del DIV del formulario-->
         <div class="form">
-               <!-- <div class="row mt-2">
+            <!-- <div class="row mt-2">
                     <div class="col-2">
                         <label class="form-label mt-2" for="name">Nombre: </label>
                     </div>
                     <div class="col-10">
                         <input class="form-control" type="text" name="name" id="name" placeholder="nombre">
                     </div>
-               </div> -->
-               <div class="row mt-2">
+                </div> -->
+                <!--*Inicio de la fila de combobox personaje-->
+                <div class="row mt-2">
                     <div class="col-2">
                         <label class="form-label mt-2" for="name">Personaje: </label>
                     </div>
@@ -20,11 +22,15 @@
                         </select>
                     </div>
                 </div>
+                <!--#Fin de la fila de combobox personaje-->
+                <!--*Inicio  de la fila de la imagen-->
                 <div class="row mt-2">
                     <div class="col-12 text-center">
                         <img src="/assets/{{personSelected.image}}.jpg" alt="Imagen del Personaje" class="w-50 img-fluid img-thumbnail rounded">
                     </div>
                 </div>
+                <!--#Fin  de la fila de la imagen-->
+                <!--*Inicio  de la fila de ataque-->
                 <div class="row mt-2">
                     <div class="col-2">
                         <label class="form-label" for="name">Ataque: </label>
@@ -33,6 +39,8 @@
                         <progress max="500" value="{{personSelected.attack}}" class="form-control h-100 ms-2"></progress>
                     </div>
                 </div>
+                <!--#Fin de la fila de ataque-->
+                <!--*Inicio de la fila de defensa-->
                 <div class="row mt-2">
                     <div class="col-2">
                         <label class="form-label" for="name">Defensa: </label>
@@ -41,6 +49,8 @@
                         <progress max="500" value="{{personSelected.defense}}" class="form-control h-100 ms-2"></progress>
                     </div>
                 </div>                
+                <!--#Fin de la fila de defensa-->
+                <!--*Inicio de la fila de sabiduría-->
                 <div class="row mt-2">
                     <div class="col-2">
                         <label class="form-label" for="name">Sabiduría: </label>
@@ -49,6 +59,8 @@
                         <progress max="500" value="{{personSelected.wisdom}}" class="form-control h-100 ms-2"></progress>
                     </div>
                 </div>
+                <!--#Fin de la fila de sabiduría-->
+                <!--*Inicio de la fila de suerte-->
                 <div class="row mt-2">
                     <div class="col-2">
                         <label class="form-label" for="name">Suerte: </label>
@@ -57,11 +69,15 @@
                         <progress max="100" value="{{personSelected.luck}}" class="form-control h-100 ms-2"></progress>
                     </div>
                 </div>
+                <!--#Fin de la fila de suerte-->
+                <!--*Inicio de la fila de Listo-->
                 <div class="row mt-2 text-center">
                     <div class="col-12">
                         <button class="btn btn-primary" (click)="escogerPersonaje()">LISTO</button>
                     </div>
                 </div>
-        </div>
+                <!--#Fin de la fila de Listo-->
+            </div>
+            <!--#Fin del DIV del formulario-->
     </div>
 </div>

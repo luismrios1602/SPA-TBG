@@ -9,12 +9,24 @@ import { PersonajesService } from 'src/app/services/personajes/personajes.servic
 })
 export class SelectionComponent implements OnInit {
 
+  /**Paramétro para llamar al Div de los botones de Batallar y Cancelar en la vista de selección */
   @ViewChild("divBotones") divBotones!: ElementRef;
+
+  /**Variable para consultar si el P1 ya está ´Listo´ */
   P1isSelected:boolean = false;
+
+  /**Variable para consultar si el P2 ya está ´Listo´ */
   P2isSelected:boolean = false;
 
+  /**Variable para consultar si alguno de los dos player es CPU y es definir qué componente llamar */
   isCPU!:boolean;
 
+  /**
+   * 
+   * @param router Inyección de dependencias de la clase Router para manejar la navegación en la SPA
+   * @param render Inyección de dependencia de la clase Render para llamar elementos del HTML y usarlos en el controlador
+   * @param personajesService Inyección de dependencia de la clase personajesServices para usar los PlayerName globales
+   */
   constructor(private router:Router, private render:Renderer2, private personajesService:PersonajesService) { }
 
   ngOnInit(): void {
